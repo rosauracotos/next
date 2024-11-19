@@ -1,15 +1,10 @@
 import ObraCard from '@/components/ObraCard'
+import axios from "axios";
+
 
 async function loadObras() {
-    const response = await fetch("http://localhost:3000/api/obras", {
-        cache: 'no-store', // Esto evita la reutilización de datos cacheados en entornos estáticos
-    });
-
-    if (!response.ok) {
-        throw new Error("Error al cargar las obras");
-    }
-
-    return response.json();
+    const {data} = await axios.get("http://localhost:3000/api/obras")
+    return data;
 }
 
  async function ObrasPage(){
