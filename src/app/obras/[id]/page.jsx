@@ -3,7 +3,7 @@ import axios from "axios";
 import Buttons from "@/app/obras/[id]/Buttons";
 
 async function loadObra(obraId){
-    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/obras/${obraId}`);
+    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/obras/${obraId}`);
     return data;
 }
 
