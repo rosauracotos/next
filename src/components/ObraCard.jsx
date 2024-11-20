@@ -11,10 +11,10 @@ function ObraCard({obra}){
                 )
             }
             <div className="p-4">
-                <h1 className="text-lg font-bold">{obra.nombre}</h1>
-                <h1 className="text-lg font-bold">{obra.autor}</h1>
-                <h1 className="text-lg font-bold">{obra.categoria}</h1>
-                <h1 className="text-2xl text-slate-600">{obra.price}</h1>
+                <h1 className="text-xl font-bold text-gray-800 mb-2">{obra.nombre}</h1>
+                <h1 className="text-sm text-gray-500 mb-1"><span className="italic">De </span> {obra.autor}</h1>
+                <h1 className="text-sm text-gray-400 mb-2 capitalize">{obra.categoria}</h1>
+                <h1 className="text-2xl font-bold text-blue-600"> S/ {obra.price.toFixed(2)}</h1>
 
             </div>
 
