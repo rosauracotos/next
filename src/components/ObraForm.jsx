@@ -13,6 +13,7 @@ function ObraForm() {
 
     });
 
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [file, setFile] = useState(null);
     const form = useRef(null);
     const router = useRouter()
@@ -30,7 +31,7 @@ function ObraForm() {
 
     useEffect(() => {
         if (params.id){
-            axios.get('/api/obras/' + params.id)
+            axios.get(`${API_BASE_URL}/obras/${params.id}`)
                 .then(res => {
                     setObra({
                         nombre: res.data.nombre,
@@ -40,7 +41,7 @@ function ObraForm() {
                     })
                 })
         }
-    }, [params.id]);
+    }, [params?.id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,14 +57,14 @@ function ObraForm() {
         }
 
         if (!params.id){
-            const res = await axios.post("/api/obras",formData, {
+            const res = await axios.post(`${API_BASE_URL}/obras`,formData, {
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
             })
             console.log(res);
         } else {
-            const res =     await axios.put("/api/obras/" + params.id, formData, {
+            const res =     await axios.put(`${API_BASE_URL}/obras/${params.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }

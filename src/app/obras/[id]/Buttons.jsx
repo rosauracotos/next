@@ -9,7 +9,7 @@ function Buttons({obraId}) {
             <button className="text-white bg-red-500 hover:bg-red-700 py-2 px-3 rounded"
                     onClick={async () => {
                         if (confirm("are you sure you want to delete this obra?")) {
-                            const res = await axios.delete("/api/obras/" + obraId);
+                            const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/obras/${obraId}`);
                             if (res.status === 204) {
                                 router.push("/obras");
                                 router.refresh();

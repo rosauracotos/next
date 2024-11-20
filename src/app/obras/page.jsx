@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 async function loadObras() {
-    const {data} = await axios.get("http://localhost:3000/api/obras")
+    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/obras`)
     return data;
 }
 

@@ -1,25 +1,32 @@
 import {NextResponse} from "next/server";
-import {conn} from "@/libs/mysql";
 import { unlink} from 'fs/promises'
 import {processImage} from '@/libs/processImage'
 import cloudinary from '@/libs/cloudinary'
+import { db } from "@/libs/firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+
+const obra = "obra";
 export async function GET(){
 
     try {
-        const results = await conn.query("select * from obra");
-        return NextResponse.json(results);
+        const results = await getDocs(collection(db,obra));
+       const obras = results.docs.map((doc) => ({
+           id: doc.id,
+           ...doc.data(),
+       }));
+
+        return NextResponse.json(obras);
     } catch (error){
+        console.error("error en get", error)
         return NextResponse.json(
             {
-                message: error.message,
+                message: "error al obtener obras"
             },
             {
                 status: 500,
             }
         )
     }
-
-
 }
 
 export async function POST(request){
@@ -52,20 +59,20 @@ export async function POST(request){
             await unlink(filePath);
         }
 
-        const result = await  conn.query("insert into obra set ?",{
+        const newObra = {
             nombre: data.get("nombre"),
             autor: data.get("autor"),
             categoria: data.get("categoria"),
-            price: data.get("price"),
+            price: parseFloat(data.get("price")),
             imagen: res.secure_url,
-        });
+        };
+
+        const docRef = await addDoc(collection(db, obra), newObra);
         return NextResponse.json({
-            nombre: data.get("nombre"),
-            autor: data.get("autor"),
-            categoria: data.get("categoria"),
-            price: data.get("price"),
-            id: result.insertId,
+            id: docRef.id,
+            ...newObra,
         });
+
     } catch (error) {
         console.log(error);
         return NextResponse.json(
