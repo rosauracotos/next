@@ -1,16 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDndXrRF5dxTUGuUQDGVFpIL9NdnBItUbY",
-    authDomain: "libreria-a4e84.firebaseapp.com",
-    projectId: "libreria-a4e84",
-    storageBucket: "libreria-a4e84.firebasestorage.app",
-    messagingSenderId: "853113202790",
-    appId: "1:853113202790:web:f9eef62cad9a68f4a6e5a7",
-    measurementId: "G-3RBX7SST20"
+    apiKey: NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain:NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 

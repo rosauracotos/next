@@ -5,11 +5,11 @@ import { useState } from "react";
 
 function Buttons({ obraId }) {
     const router = useRouter();
-    const [loading, setLoading] = useState(false); // Estado para el indicador de carga
+    const [loading, setLoading] = useState(false);
 
     const handleDelete = async () => {
         if (confirm("¿Estás seguro de que deseas eliminar esta obra?")) {
-            setLoading(true); // Activa el estado de carga
+            setLoading(true);
             try {
                 const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/obras/${obraId}`);
                 if (res.status === 204) {
@@ -19,7 +19,7 @@ function Buttons({ obraId }) {
             } catch (error) {
                 console.error("Error al eliminar la obra:", error);
             } finally {
-                setLoading(false); // Desactiva el estado de carga
+                setLoading(false);
             }
         }
     };
