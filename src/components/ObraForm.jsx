@@ -77,16 +77,20 @@ function ObraForm() {
     };
     return(
 
-        <div className="flex">
-            <form className="bg-white shadow-md rounded-md px-8 pt-6 pb-8 mb-4"
+        <div className="flex items-center justify-center min-h-screen ">
+            <form className="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 w-full max-w-md"
                   onSubmit={handleSubmit}
                   ref={form}
             >
+                <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
+                    {params.id ? "Editar Obra" : "Nueva Obra"}
+                </h2>
+
                 <label
                     htmlFor="nombre"
                     className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                    Obra Nombre:
+                    Nombre de la Obra:
                 </label>
                 <input
                     name="nombre"
@@ -94,7 +98,7 @@ function ObraForm() {
                     placeholder="nombre"
                     onChange={handleChange}
                     value={obra.nombre}
-                    className="shadow appearance-none border rounded w-full py-2 px-3"
+                    className="shadow appearance-none border rounded-lg w-full py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     autoFocus
                 />
 
@@ -102,7 +106,7 @@ function ObraForm() {
                     htmlFor="autor"
                     className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                    Obra Autor:
+                    Autor:
                 </label>
                 <input
                     name="autor"
@@ -110,7 +114,7 @@ function ObraForm() {
                     placeholder="autor"
                     onChange={handleChange}
                     value={obra.autor}
-                    className="shadow appearance-none border rounded w-full py-2 px-3"
+                    className="shadow appearance-none border rounded-lg w-full py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     autoFocus
                 />
 
@@ -118,7 +122,7 @@ function ObraForm() {
                     htmlFor="categoria"
                     className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                    Obra categoria:
+                    Categoría:
                 </label>
                 <input
                     name="categoria"
@@ -126,7 +130,7 @@ function ObraForm() {
                     placeholder="categoria"
                     onChange={handleChange}
                     value={obra.categoria}
-                    className="shadow appearance-none border rounded w-full py-2 px-3"
+                    className="shadow appearance-none border rounded-lg w-full py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     autoFocus
                 />
 
@@ -134,7 +138,7 @@ function ObraForm() {
                     htmlFor="price"
                     className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                    Obra price:
+                    Precio:
                 </label>
                 <input
                     name="price"
@@ -142,7 +146,7 @@ function ObraForm() {
                     placeholder="price"
                     onChange={handleChange}
                     value={obra.price}
-                    className="shadow appearance-none border rounded w-full py-2 px-3"
+                    className="shadow appearance-none border rounded-lg w-full py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     autoFocus
                 />
 
@@ -150,12 +154,12 @@ function ObraForm() {
                     htmlFor="obraImagen"
                     className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                    Imagen de Obra :
+                    Imagen de la Obra:
                 </label>
 
                 <input
                     type="file"
-                    className="shadow appearance-none border rounded w-full py-2 px-3 mb-2"
+                    className="shadow appearance-none border rounded-lg w-full py-2 px-3 mb-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     onChange={(e) => {
                         setFile(e.target.files[0]);
                     }}
@@ -165,20 +169,19 @@ function ObraForm() {
                 {
                     file && (
                         <img
-                        className="w-96 object-contain mx-auto my'4"
-                        src={URL.createObjectURL(file)}
-                        alt=""
+                            className="w-40 h-40 object-cover mx-auto my-4 rounded-lg shadow-md"
+                            src={URL.createObjectURL(file)}
+                            alt=""
                         />
                     )
                 }
 
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {params.id ? "editar" : "create obra "}
+                <button className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-2 px-4 rounded-lg w-full transition duration-300">
+                    {params.id ?  "Actualizar Obra" : "Crear Obra"}
                 </button>
 
 
             </form>
-
 
 
         </div>

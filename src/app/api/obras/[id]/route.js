@@ -92,7 +92,7 @@ export async function PUT(request, { params }){
             price: parseFloat(price),
         };
 
-        // Si se proporciona una nueva imagen, procesarla y actualizar el campo de imagen
+
         if (imagen) {
             const filePath = await processImage(imagen);
             const res = await cloudinary.uploader.upload(filePath);
@@ -103,10 +103,10 @@ export async function PUT(request, { params }){
             }
         }
 
-        // Referencia al documento en Firestore
+
         const obraRef = doc(db, "obra", params.id);
 
-        // Verificar si la obra existe
+
         const obraSnap = await getDoc(obraRef);
         if (!obraSnap.exists()) {
             return NextResponse.json(
@@ -119,10 +119,10 @@ export async function PUT(request, { params }){
             );
         }
 
-        // Actualizar el documento en Firestore
+
         await updateDoc(obraRef, updatedData);
 
-        // Obtener la obra actualizada
+
         const updatedObra = (await getDoc(obraRef)).data();
         return NextResponse.json({
             id: params.id,
